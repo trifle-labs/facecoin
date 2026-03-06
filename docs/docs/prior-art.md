@@ -39,6 +39,32 @@ A "higher-resolution, lower pixel bit-depth advancement" on the original. Produc
 
 A tokenized NFT edition (ERC-721 on Ethereum). The genesis block and colors of proof-of-work bitmaps are derived from the owner's Ethereum wallet address, making each edition a "portrait of the owner's blockchain identity."
 
+## Clovers Network (2019)
+
+Clovers Network was an Ethereum dApp that pioneered **proof of search** -- a proof-of-work variant where computational effort produces aesthetic artifacts rather than meaningless hashes. Created by Billy Rennekamp (an artist, developer, and competitive Othello player), it launched on Ethereum mainnet in August 2019 during Berlin Blockchain Week.
+
+### How It Worked
+
+Participants "mined" Clovers by running simulations of complete, valid games of Reversi (Othello) and searching the game's ~10^28 possible states for end-board configurations with visual symmetry. The process:
+
+1. A miner runs random complete Reversi games locally
+2. The final board state (an 8x8 grid of black and white pieces) is evaluated for six types of visual symmetry
+3. If a symmetrical pattern is found, the miner submits the game's moves (in chess notation) to an Ethereum smart contract
+4. The contract replays and verifies the game is valid, then mints the Clover as an NFT
+5. The miner receives Clover Coin tokens as a reward, with rarer symmetry types earning more
+
+### Significance for Facecoin
+
+Clovers is a direct conceptual ancestor of Facecoin in several ways:
+
+- **Meaningful proof of work**: Like Facecoin, it replaced arbitrary hash puzzles with a search through a combinatorial space for aesthetically interesting outputs
+- **Mining produces art**: Every successful "mine" created a unique visual artifact (the board pattern), just as every Facecoin block produces a face image
+- **Fully on-chain**: The game moves and board states were stored entirely on-chain, with the visual representation derivable from the data -- the same approach Facecoin takes with deterministically regenerable face images
+- **Economic incentives for collective exploration**: Clovers created a crypto-economic game where participants were incentivized to collectively explore a vast latent space of possible patterns, surfacing the most interesting ones. Facecoin does the same with the space of possible face-like images.
+- **Bonding curve tokenomics**: Used a Bancor-formula bonding curve for its native token, creating a self-sustaining loop between discovery, minting, and trading
+
+Clovers demonstrated that proof-of-search -- computational work directed toward aesthetic discovery rather than arbitrary difficulty -- could function as the basis of a viable crypto-economic system. Facecoin extends this principle from board game symmetry to machine pareidolia.
+
 ## Seeing Faces in Things (ECCV 2024)
 
 A key academic work that directly informs Facecoin's design. Researchers at the University of Edinburgh created the first large-scale dataset of pareidolic face images and benchmarked state-of-the-art face detectors against them. Key findings:

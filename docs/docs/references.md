@@ -15,9 +15,11 @@ title: References
 
 4. **Rhea Myers, *Proof of Work: Blockchain Provocations 2011-2021* (2022)**. Urbanomic / MIT Press. ISBN 9781915103048. Collected anthology of blockchain artworks and essays.
 
+5. **Clovers Network (2019)**. An Ethereum dApp using proof of search to mine symmetrical Reversi board patterns as NFTs. Created by Billy Rennekamp. [github.com/clovers-network](https://github.com/clovers-network/clovers-dapp)
+
 ## Face Detection
 
-5. **Viola, P. and Jones, M. (2001)**. "Rapid Object Detection using a Boosted Cascade of Simple Features." *CVPR 2001*. The foundational paper for Haar Cascade face detection.
+6. **Viola, P. and Jones, M. (2001)**. "Rapid Object Detection using a Boosted Cascade of Simple Features." *CVPR 2001*. The foundational paper for Haar Cascade face detection.
 
 6. **Vora, M. et al. (2024)**. "Seeing Faces in Things: A Model and Dataset for Pareidolia." *ECCV 2024*. [arxiv.org/abs/2409.16143](https://arxiv.org/abs/2409.16143). The first large-scale study of face detection on pareidolic images, finding that state-of-the-art detectors achieve under 8% AP.
 

@@ -8,19 +8,21 @@ slug: /abstract
 
 **A Cryptocurrency Where Mining Means Finding Faces**
 
-Facecoin is a cryptocurrency that replaces traditional hash-based proof of work with **proof of face** -- a consensus mechanism that requires miners to find inputs whose visual representations contain machine-detectable faces. Drawing on the phenomenon of pareidolia (seeing faces in random patterns), Facecoin transforms the computationally arbitrary work of mining into an act of machine perception.
+Facecoin is a sovereign rollup on Celestia where participants mine FACE tokens by finding inputs whose visual representations contain machine-detectable faces. Drawing on the phenomenon of pareidolia (seeing faces in random patterns), Facecoin transforms the computationally arbitrary work of mining into an act of machine perception.
 
-Miners hash candidate data, convert the output to a greyscale image, and submit it to a face detection algorithm. If the detector finds a face above the current confidence threshold, the block is valid. The difficulty adjusts dynamically: if blocks are found too quickly, the required confidence score increases; if too slowly, it decreases. The result is a blockchain whose proof of work produces a permanent gallery of machine-perceived faces -- each one minted as an NFT belonging to the miner who discovered it.
+Miners search locally for nonces that, when hashed and converted to a greyscale image, produce a face detection score above the current difficulty threshold. They submit their proof as a transaction to the chain. The application layer verifies the claim, awards FACE tokens, and mints the face image as an NFT. Block production itself is handled by a standard centralized sequencer -- Proof of Face lives entirely at the application layer, making the chain simple to deploy using off-the-shelf Celestia rollup frameworks like Rollkit or Sovereign SDK.
+
+The difficulty adjusts dynamically: if valid proofs are submitted too quickly, the required confidence score increases; if too slowly, it decreases. The result is a blockchain whose application-layer mining produces a permanent gallery of machine-perceived faces -- each one an NFT belonging to the miner who discovered it.
 
 Facecoin extends Rhea Myers' 2014 conceptual artwork *Facecoin* into a fully realized blockchain -- a sovereign rollup on Celestia with native currency, an NFT system for mined face images, and bridging capabilities to Ethereum and Solana ecosystems.
 
 ## Key Properties
 
-- **Proof of Face consensus**: Mining produces images containing algorithmically detected faces
-- **Dynamic difficulty**: Face detection confidence threshold adjusts based on block timing, analogous to Bitcoin's difficulty adjustment
-- **Fast verification**: Face detection scoring is designed to be orders of magnitude faster than generation, keeping validation cheap
-- **Native NFTs**: Every successfully mined block produces an NFT of the face image, owned by the miner
-- **Native currency**: FACE tokens are awarded to miners as block rewards
-- **Longest chain rule**: The canonical chain is the one with the most cumulative proof-of-face work
+- **Proof of Face mining**: Participants find images containing algorithmically detected faces and submit proofs as transactions
+- **Dynamic difficulty**: Face detection confidence threshold adjusts based on submission rate
+- **Fast verification**: On-chain face detection scoring is designed to be orders of magnitude faster than the search that produced it
+- **Native NFTs**: Every valid proof of face mints an NFT of the face image, owned by the miner
+- **Native currency**: FACE tokens are awarded for valid face submissions
+- **Sovereign rollup on Celestia**: Standard sequencer handles block production; Celestia provides data availability. Proof of Face is purely application-layer logic.
 - **Bridgeable**: Native tokens and NFTs can be bridged to Ethereum and Solana
-- **Sovereign rollup on Celestia**: Proof of Face handles block production; Celestia provides data availability with cryptographic guarantees
+- **Minimal custom infrastructure**: No custom consensus or sequencer -- uses Celestia rollup frameworks as-is

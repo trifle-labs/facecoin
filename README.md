@@ -2,11 +2,11 @@
 
 **Proof of Face: A Cryptocurrency Powered by Machine Pareidolia**
 
-Facecoin is a cryptocurrency that replaces traditional hash-based proof of work with *proof of face* -- a consensus mechanism that requires miners to find inputs whose visual representations contain machine-detectable faces.
+Facecoin is a sovereign rollup on Celestia where participants mine FACE tokens by finding inputs whose visual representations contain machine-detectable faces. Miners search locally for nonces that produce face-like images, then submit proofs as transactions. The chain verifies the claim, awards FACE tokens, and mints the face image as an NFT.
 
-Miners hash candidate data, convert the output to a greyscale image, and submit it to a face detection algorithm. If the detector finds a face above the current confidence threshold, the block is valid. Every mined block produces an NFT of the discovered face image.
+Block production is handled by a standard sequencer -- Proof of Face lives entirely at the application layer, making the chain deployable with off-the-shelf Celestia rollup frameworks.
 
-This project extends [Rhea Myers' 2014 conceptual artwork *Facecoin*](https://rhea.art/facecoin/) into a fully realized standalone blockchain.
+This project extends [Rhea Myers' 2014 conceptual artwork *Facecoin*](https://rhea.art/facecoin/) and draws on [Clovers Network](https://github.com/clovers-network/clovers-dapp)'s proof-of-search model.
 
 ## Documentation
 
@@ -14,11 +14,12 @@ Read the full whitepaper at **[trifle-labs.github.io/facecoin](https://trifle-la
 
 ## Key Features
 
-- **Proof of Face consensus** -- mining produces machine-perceived face images
-- **Dynamic difficulty** -- face detection confidence threshold adjusts with network hashrate
-- **Native NFTs** -- every block mints a face image NFT for the miner
+- **Proof of Face mining** -- find machine-perceived faces in hash-derived images, submit proofs as transactions
+- **Dynamic difficulty** -- face detection confidence threshold adjusts with mining activity
+- **Native NFTs** -- every valid proof mints a face image NFT for the miner
 - **FACE token** -- native currency with halving emission schedule
-- **Sovereign rollup on Celestia** -- Proof of Face for block production, Celestia for data availability
+- **Sovereign rollup on Celestia** -- standard sequencer for blocks, Celestia for data availability
+- **Minimal custom code** -- only the face detection module is custom; everything else is off-the-shelf Rollkit + Cosmos SDK
 - **Bridgeable** -- tokens and NFTs can bridge to Ethereum and Solana
 
 ## Project Structure

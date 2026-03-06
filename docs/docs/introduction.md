@@ -27,12 +27,12 @@ Myers described the core insight:
 
 The original Facecoin converted SHA-256 hashes into 8x8 greyscale pixel grids, upscaled and blurred them, and ran face detection using CCV's JavaScript library. It was a proof of concept -- a complete toy blockchain running in the browser, but not a deployable network.
 
-Facecoin (this project) takes Myers' concept to its logical conclusion: a fully realized, standalone blockchain where every block mined adds a machine-perceived face to a permanent, on-chain gallery. The currency has real consensus mechanics, dynamic difficulty adjustment, native NFTs, and bridging to major ecosystems.
+Facecoin (this project) takes Myers' concept to its logical conclusion: a sovereign rollup on Celestia where application-layer mining produces a permanent, on-chain gallery of machine-perceived faces. The chain has real economic mechanics, dynamic difficulty adjustment, native NFTs, and bridging to major ecosystems.
 
 ## Design Goals
 
 1. **Meaningful work**: Mining produces artifacts (face images) rather than disposable hashes
 2. **Fast verification**: Validating a proof of face should be much cheaper than finding one
-3. **Tunable difficulty**: The system must adapt to changes in network hashrate
-4. **Aesthetic output**: The face images are preserved as NFTs, creating a generative art collection as a byproduct of consensus
-5. **Practical deployment**: A standalone chain with real networking, storage, and cross-chain interoperability
+3. **Tunable difficulty**: The system must adapt to changes in mining activity
+4. **Aesthetic output**: The face images are preserved as NFTs, creating a generative art collection as a byproduct of mining
+5. **Simple deployment**: By keeping Proof of Face at the application layer and using a standard rollup framework, the chain requires no custom consensus or sequencer engineering

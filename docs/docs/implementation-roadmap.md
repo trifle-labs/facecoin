@@ -16,40 +16,44 @@ title: Implementation Roadmap
 - [ ] Benchmark: what is the distribution of face scores across random inputs?
 - [ ] Calibrate initial difficulty threshold based on benchmarks
 - [ ] Determinism test suite: verify identical results across platforms
-- [ ] Simple block validation: given a header + nonce, verify the face score
+- [ ] Simple proof verification: given a challenge + miner + nonce, verify the face score
 
-**Deliverable**: A standalone mining tool that finds faces in hashes and reports scores.
+**Deliverable**: A standalone mining CLI that finds faces in hashes and reports scores.
 
-## Phase 2: Toy Blockchain
+## Phase 2: Rollup with Mining
 
-**Goal**: A minimal in-memory blockchain demonstrating the full consensus loop.
+**Goal**: Deploy the Proof of Face mechanism as a Cosmos SDK module on a Rollkit sovereign rollup.
 
-- [ ] Block structure (header with face-specific fields)
-- [ ] Chain management (longest chain selection, fork resolution)
-- [ ] Difficulty adjustment algorithm
-- [ ] Simple transaction processing (transfers only)
-- [ ] Coinbase transaction (block reward + NFT minting)
-- [ ] Basic P2P networking (block and transaction propagation)
-- [ ] Command-line miner
-- [ ] Block explorer (web interface showing the face gallery)
+- [ ] Scaffold Cosmos SDK chain with Rollkit
+- [ ] Implement `x/facecoin` module:
+  - [ ] `MsgSubmitProofOfFace` transaction type
+  - [ ] On-chain face detection verification (gocv or pure-Go Haar Cascade)
+  - [ ] Challenge rotation logic
+  - [ ] Difficulty adjustment algorithm
+  - [ ] FACE token minting on valid proof
+  - [ ] NFT minting on valid proof
+- [ ] `MsgTransferNFT` transaction type
+- [ ] Genesis state configuration
+- [ ] Connect to Celestia testnet (Mocha)
+- [ ] Mining client that watches chain state and submits proofs
+- [ ] Basic block explorer / face gallery web UI
 
-**Deliverable**: A multi-node testnet where participants can mine, send FACE, and view the face gallery.
+**Deliverable**: A testnet rollup on Celestia where participants can mine FACE, submit proofs, and view the face gallery.
 
-## Phase 3: Substrate Integration
+## Phase 3: Polish and Testnet
 
-**Goal**: Production-quality blockchain built on Substrate.
+**Goal**: Production-quality testnet with full feature set.
 
-- [ ] Custom `pallet-face-detection` with host functions for fast native detection
-- [ ] Custom `pallet-face-nfts` for automatic NFT minting
-- [ ] Integrate with `pallet-balances` for FACE token management
-- [ ] Extend `sc-consensus-pow` for Proof of Face consensus
-- [ ] Implement difficulty adjustment as a runtime module
-- [ ] Full transaction validation and state management
-- [ ] RPC endpoints for querying face images, NFT metadata, and chain state
-- [ ] Chain specification (genesis block, initial parameters)
-- [ ] Testnet deployment
+- [ ] Determinism test suite across platforms (ensure all nodes compute identical scores)
+- [ ] Mining client optimizations (parallel nonce search, GPU-accelerated detection)
+- [ ] RPC endpoints for querying face images, NFT metadata, mining stats
+- [ ] Wallet integration (Keplr or custom)
+- [ ] Face gallery web app with colorized rendering
+- [ ] CLIP-based aesthetic scoring (optional, off-chain) for NFT quality ranking
+- [ ] Load testing and performance tuning
+- [ ] Public testnet launch
 
-**Deliverable**: A Substrate-based testnet with full consensus, native tokens, and NFTs.
+**Deliverable**: Public testnet with mining client, wallet, and gallery.
 
 ## Phase 4: Bridge and Ecosystem
 
@@ -57,8 +61,7 @@ title: Implementation Roadmap
 
 - [ ] Deploy wFACE (ERC-20) contract on Ethereum
 - [ ] Deploy FacecoinNFT (ERC-721) contract on Ethereum
-- [ ] Build bridge validator software
-- [ ] Implement lock-and-mint protocol for tokens and NFTs
+- [ ] Implement bridge (Axelar, Lazybridging, or custom lock-and-mint)
 - [ ] Bridge UI for transferring assets between chains
 - [ ] Deploy SPL token on Solana (wFACE)
 - [ ] Deploy Metaplex NFT on Solana
@@ -70,9 +73,9 @@ title: Implementation Roadmap
 
 **Goal**: Launch the production network.
 
-- [ ] Security audit of consensus, bridge, and smart contracts
+- [ ] Security audit of application module and bridge contracts
+- [ ] Migrate from Celestia testnet to mainnet
 - [ ] Performance testing under load
-- [ ] Genesis block mining ceremony
 - [ ] Mainnet launch
 - [ ] Bridge activation
 - [ ] Documentation and community onboarding
@@ -81,18 +84,16 @@ title: Implementation Roadmap
 
 ## Open Research Questions
 
-Several design decisions would benefit from further research and community input:
-
 1. **Optimal image size**: Is 128x128 the right tradeoff between detection quality and generation speed? Benchmarking will inform this.
 
-2. **Detector choice finalization**: Should the protocol support multiple detectors (with the specific detector ID recorded in the block header), or commit to exactly one?
+2. **Detector choice finalization**: Should the protocol support multiple detectors (with the specific detector ID recorded in the proof), or commit to exactly one?
 
 3. **Color mapping for NFTs**: What aesthetic approach produces the most visually interesting colorized faces? This is subjective and could benefit from community input.
 
-4. **Bridge validator incentives**: How should bridge validators be compensated? Transaction fees? Staking rewards?
+4. **Sequencer decentralization**: When and how to transition from a centralized sequencer to shared/decentralized sequencing (Astria, Espresso, etc.).
 
-5. **Governance**: How should protocol parameters (difficulty adjustment period, block time target, detector parameters) be changed over time? On-chain governance? Hard forks?
+5. **Governance**: How should protocol parameters (difficulty adjustment period, proof rate target, detector parameters) be changed over time? On-chain governance? Hard forks?
 
-6. **CLIP integration**: Should a CLIP-based aesthetic score be added as optional NFT metadata? As a consensus parameter? This could enable "proof of beautiful face" at higher difficulty tiers.
+6. **CLIP integration**: Should a CLIP-based aesthetic score be added as optional NFT metadata? As a chain parameter? This could enable "proof of beautiful face" at higher difficulty tiers.
 
-7. **Mobile mining**: Face detection on mobile devices is well-supported (MediaPipe was designed for it). Could Facecoin support mobile mining for broader participation?
+7. **Mobile mining**: Face detection on mobile devices is well-supported (MediaPipe was designed for it). Could Facecoin support a mobile mining client for broader participation?
